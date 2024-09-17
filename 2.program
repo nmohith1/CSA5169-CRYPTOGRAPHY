@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <string.h>
+int main() {
+    char plaintext_alphabet[] = "abcdefghijklmnopqrstuvwxyz";
+    char ciphertext_alphabet[] = "QWERTYUIOPASDFGHJKLZXCVBNM";
+    char plaintext[100], ciphertext[100];   
+    printf("Enter the plaintext: ");
+    fgets(plaintext, sizeof(plaintext), stdin);
+    for (int i = 0; plaintext[i]; i++) {
+        if (plaintext[i] >= 'a' && plaintext[i] <= 'z')
+            ciphertext[i] = ciphertext_alphabet[plaintext[i] - 'a'];
+        else if (plaintext[i] >= 'A' && plaintext[i] <= 'Z')
+            ciphertext[i] = ciphertext_alphabet[plaintext[i] - 'A'];
+        else
+            ciphertext[i] = plaintext[i];
+    }
+    printf("Ciphertext: %s", ciphertext);
+    return 0;
+}
