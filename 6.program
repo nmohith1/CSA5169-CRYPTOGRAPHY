@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <string.h>
+int gcd(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+int is_coprime_with_26(int a) {
+    return gcd(a, 26) == 1;
+}
+int mod_inverse(int a, int m) {
+    for (int x = 1; x < m; x++) {
+        if ((a * x) % m == 1) {
+            return x;
+        }
+    }
+    return -1;
+}
+char affine_decrypt(char c, int a_inv, int b, int shift) {
+    if (c < 'A' || c > 'Z') return c;
+    return 'A' + ((a_inv * (c - 'A' - b + 26)) % 26 + 26) % 26;
+}
+void decrypt_affine_cipher(char *ciphertext, int a, int b) {
+    int a_inv = mod_inverse(a, 26);
+    if (a_inv == -1) {
+        printf("No modular inverse found for a = %d\n", a);
+        return;
+    }
+    printf("Decrypted text: ");
+    for (int i = 0; ciphertext[i] != '\0'; i++) {
+        printf("%c", affine_decrypt(ciphertext[i], a_inv, b, 'A'));
+    }
+    printf("\n");
+}
+int main() {
+    char ciphertext[100];
+    printf("Enter ciphertext (only uppercase letters): ");
+    scanf("%s", ciphertext);
+    char most_frequent = 'B';
+    char second_most_frequent = 'U';
+    for (int a = 1; a < 26; a++) {
+        if (!is_coprime_with_26(a)) continue;
+        for (int b = 0; b < 26; b++) {
+            int shift1 = (most_frequent - 'A') - (second_most_frequent - 'A') + 26;
+            int shift2 = (shift1 * mod_inverse(a, 26)) % 26;
+            if (shift2 < 0) shift2 += 26;
+            decrypt_affine_cipher(ciphertext, a, b);
+        }
+    }
+    return 0;
+}
