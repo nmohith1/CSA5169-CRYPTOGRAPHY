@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <ctype.h>
+void caesar_cipher(char *text, int shift);
+int main() {
+    char text[100];
+    int shift;
+    printf("Enter text (max 99 characters): ");
+    fgets(text, sizeof(text), stdin);
+    printf("Enter shift value (1-25): ");
+    scanf("%d", &shift);
+    if (shift < 1 || shift > 25) {
+        printf("Shift value must be between 1 and 25.\n");
+        return 1;
+    }
+    printf("Original text: %s", text);
+    caesar_cipher(text, shift);
+    printf("Encrypted text: %s", text);
+    caesar_cipher(text, 26 - shift);
+    printf("Decrypted text: %s", text);
+    return 0;
+}
+void caesar_cipher(char *text, int shift) {
+    while (*text) {
+        if (isalpha(*text)) {
+            char base = isupper(*text) ? 'A' : 'a';
+            *text = (char)(((*text - base + shift) % 26) + base);
+        }
+        text++;
+    }
+}
