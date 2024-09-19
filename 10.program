@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#define SIZE 5
+char playfairMatrix[SIZE][SIZE] = {
+    {'M', 'F', 'H', 'I', 'K'},
+    {'U', 'N', 'O', 'P', 'Q'},
+    {'Z', 'V', 'W', 'X', 'Y'},
+    {'E', 'L', 'A', 'R', 'G'},
+    {'D', 'S', 'T', 'B', 'C'}
+};
+void prepareMessage(char *message, char *prepared) {
+    int index = 0;
+    for (int i = 0; message[i]; i++) {
+        if (isalpha(message[i])) {
+            prepared[index++] = toupper(message[i]);
+        }
+    }
+    prepared[index] = '\0';
+    for (int i = 0; i < index; i++) {
+        if (prepared[i] == prepared[i + 1]) {
+            for (int j = index; j > i + 1; j--) {
+                prepared[j + 1] = prepared[j];
+            }
+            prepared[i + 1] = 'X';
+            index++;
+        }
+    }
+    if (index % 2 != 0) {
+        prepared[index++] = 'X'; // Add padding character
+    }
+    prepared[index] = '\0';
+}
+void findPosition(char ch, int *row, int *col) {
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            if (playfairMatrix[i][j] == ch) {
+                *row = i;
+                *col = j;
+                return;
+            }
+        }
+    }
+}
+void encryptMessage(char *prepared, char *encrypted) {
+    int length = strlen(prepared);
+    int index = 0;
+    for (int i = 0; i < length; i += 2) {
+        int row1, col1, row2, col2;
+        findPosition(prepared[i], &row1, &col1);
+        findPosition(prepared[i + 1], &row2, &col2);
+        if (row1 == row2) { // Same row
+            encrypted[index++] = playfairMatrix[row1][(col1 + 1) % SIZE];
+            encrypted[index++] = playfairMatrix[row2][(col2 + 1) % SIZE];
+        } else if (col1 == col2) { // Same column
+            encrypted[index++] = playfairMatrix[(row1 + 1) % SIZE][col1];
+            encrypted[index++] = playfairMatrix[(row2 + 1) % SIZE][col2];
+        } else { // Rectangle
+            encrypted[index++] = playfairMatrix[row1][col2];
+            encrypted[index++] = playfairMatrix[row2][col1];
+        }
+    }
+    encrypted[index] = '\0';
+}
+int main() {
+    char message[] = "Must see you over Cadogan West. Coming at once.";
+    char prepared[100];
+    char encrypted[100];
+    prepareMessage(message, prepared);
+    encryptMessage(prepared, encrypted);
+    printf("Original Message: %s\n", message);
+    printf("Prepared Message: %s\n", prepared);
+    printf("Encrypted Message: %s\n", encrypted);
+    return 0;
+}
