@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define ALPHABET_SIZE 26
+void encrypt(const char *plaintext, const int *key, int keyLength, char *ciphertext) {
+    int index = 0;
+    for (int i = 0; plaintext[i]; i++) {
+        if (plaintext[i] >= 'a' && plaintext[i] <= 'z') {
+            int shift = key[index % keyLength];
+            ciphertext[i] = (plaintext[i] - 'a' + shift) % ALPHABET_SIZE + 'a';
+            index++;
+        } else {
+            ciphertext[i] = plaintext[i];
+        }
+    }
+    ciphertext[index] = '\0';
+}
+void deriveKey(const char *ciphertext, const char *plaintext, int *key, int keyLength) {
+    for (int i = 0; ciphertext[i]; i++) {
+        if (ciphertext[i] >= 'a' && ciphertext[i] <= 'z' && plaintext[i] >= 'a' && plaintext[i] <= 'z') {
+            key[i % keyLength] = (ciphertext[i] - plaintext[i] + ALPHABET_SIZE) % ALPHABET_SIZE;
+        }
+    }
+}
+int main() {
+    const char *plaintext = "send more money";
+    int key[] = {90, 17, 23, 15, 21, 14, 11, 11, 289};
+    int keyLength = sizeof(key) / sizeof(key[0]);
+    char ciphertext[100];
+    encrypt(plaintext, key, keyLength, ciphertext);
+    printf("Ciphertext: %s\n", ciphertext);
+    const char *newPlaintext = "cash not needed";
+    int derivedKey[100] = {0};
+    deriveKey(ciphertext, newPlaintext, derivedKey, keyLength);
+    printf("Derived Key Stream:\n");
+    for (int i = 0; i < keyLength; i++) {
+        if (derivedKey[i] != 0) {
+            printf("%d ", derivedKey[i]);
+        }
+    }
+    printf("\n");
+
+    return 0;
+}
