@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define MATRIX_SIZE 2
+#define MOD 26
+int determinant(int key[MATRIX_SIZE][MATRIX_SIZE]) {
+    return (key[0][0] * key[1][1] - key[0][1] * key[1][0]) % MOD;
+}
+int modInverse(int a, int m) {
+    a = a % m;
+    for (int x = 1; x < m; x++) {
+        if ((a * x) % m == 1) {
+            return x;
+        }
+    }
+    return -1;
+}
+void inverseKeyMatrix(int key[MATRIX_SIZE][MATRIX_SIZE], int invKey[MATRIX_SIZE][MATRIX_SIZE]) {
+    int det = determinant(key);
+    int invDet = modInverse(det, MOD);
+    invKey[0][0] = (key[1][1] * invDet) % MOD;
+    invKey[0][1] = (-key[0][1] * invDet + MOD) % MOD;
+    invKey[1][0] = (-key[1][0] * invDet + MOD) % MOD;
+    invKey[1][1] = (key[0][0] * invDet) % MOD;
+}
+void deriveKey(int p[MATRIX_SIZE][MATRIX_SIZE], int c[MATRIX_SIZE][MATRIX_SIZE], int key[MATRIX_SIZE][MATRIX_SIZE]) {
+    for (int i = 0; i < MATRIX_SIZE; i++) {
+        for (int j = 0; j < MATRIX_SIZE; j++) {
+            key[i][j] = (c[i][j] - p[i][j] + MOD) % MOD;
+        }
+    }
+}
+int main() {
+    char plaintext[] = "me";
+    char ciphertext[] = "zg";
+    int p[MATRIX_SIZE][MATRIX_SIZE], c[MATRIX_SIZE][MATRIX_SIZE], key[MATRIX_SIZE][MATRIX_SIZE];
+    for (int i = 0; i < MATRIX_SIZE; i++) {
+        p[i][0] = plaintext[i] - 'a';
+        c[i][0] = ciphertext[i] - 'a';
+    }
+    deriveKey(p, c, key);
+    printf("Derived Key Matrix:\n");
+    for (int i = 0; i < MATRIX_SIZE; i++) {
+        for (int j = 0; j < MATRIX_SIZE; j++) {
+            printf("%d ", key[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
