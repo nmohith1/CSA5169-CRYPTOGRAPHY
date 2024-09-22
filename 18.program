@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+void generate_subkeys(int key[64], int subkeys[16][48]) {
+    // Generate subkeys from two disjoint 28-bit subsets
+    for (int i = 0; i < 16; i++) {
+        // First 24 bits from one subset, second 24 from another
+    }
+}
+
+int main() {
+    int key[64]; // Initial 64-bit key
+    int subkeys[16][48];
+    generate_subkeys(key, subkeys);
+    return 0;
+}
