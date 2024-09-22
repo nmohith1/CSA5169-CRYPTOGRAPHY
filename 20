@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+void ecb_encrypt(char *plaintext, char *key) {
+    // ECB encryption logic
+}
+
+void cbc_encrypt(char *plaintext, char *key) {
+    // CBC encryption logic
+}
+
+int main() {
+    char plaintext[] = "MessageToEncrypt";
+    char key[8];
+    ecb_encrypt(plaintext, key);
+    cbc_encrypt(plaintext, key);
+    return 0;
+}
