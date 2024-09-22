@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+
+void pad_message(char *message, int block_size) {
+    int len = strlen(message);
+    int pad_len = block_size - (len % block_size);
+    for (int i = 0; i < pad_len; i++) 
+        message[len + i] = (i == 0) ? '1' : '0'; 
+    message[len + pad_len] = '\0';
+}
+
+void ecb_mode(char *plaintext, char *key) {
+    // ECB encryption logic
+}
+
+void cbc_mode(char *plaintext, char *key) {
+    // CBC encryption logic
+}
+
+void cfb_mode(char *plaintext, char *key) {
+    // CFB encryption logic
+}
+
+int main() {
+    char message[64] = "This is a test message";
+    char key[8];
+    pad_message(message, 8);
+    ecb_mode(message, key);
+    cbc_mode(message, key);
+    cfb_mode(message, key);
+    return 0;
+}
