@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+void cbc_encrypt_3des(char *plaintext, char *key1, char *key2, char *key3) {
+    // 3DES encryption logic in CBC mode
+}
+
+int main() {
+    char plaintext[] = "MessageToEncrypt";
+    char key1[8], key2[8], key3[8];
+    cbc_encrypt_3des(plaintext, key1, key2, key3);
+    return 0;
+}
