@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+void generate_keys_decryption(int keys[16][48]) {
+    // Reverse the order of keys for decryption
+    for (int i = 0; i < 16; i++) {
+        // Code to generate the keys and reverse order
+    }
+}
+
+void des_decryption(char *ciphertext, int keys[16][48]) {
+    // DES decryption logic using reverse order keys
+}
+
+int main() {
+    int keys[16][48];
+    char ciphertext[] = "EncryptedMessage";
+    generate_keys_decryption(keys);
+    des_decryption(ciphertext, keys);
+    return 0;
+}
