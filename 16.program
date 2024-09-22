@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <string.h>
+
+void letter_frequency_attack(char *ciphertext, int top_n) {
+    int freq[26] = {0}, i;
+    int n = strlen(ciphertext);
+    for (i = 0; i < n; i++) 
+        if (ciphertext[i] >= 'A' && ciphertext[i] <= 'Z') 
+            freq[ciphertext[i] - 'A']++;
+
+    // Code to rank and generate top n plaintexts would go here.
+    printf("Top %d plaintexts based on frequency analysis:\n", top_n);
+}
+
+int main() {
+    char ciphertext[] = "YRVG JHMNV VMG";
+    int top_n = 10;
+    letter_frequency_attack(ciphertext, top_n);
+    return 0;
+}
