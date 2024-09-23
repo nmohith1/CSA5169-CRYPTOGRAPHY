@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+void rsa_encrypt(char *message, int e, int n) {
+    // RSA encryption logic
+}
+
+int main() {
+    char message[] = "HELLO";
+    int e = 31, n = 3599;
+    rsa_encrypt(message, e, n);
+    return 0;
+}
