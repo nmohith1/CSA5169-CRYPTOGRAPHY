@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+char affine_caesar_encrypt(int a, int b, char p) {
+    return ((a * (p - 'A') + b) % 26) + 'A';
+}
+
+int main() {
+    char plaintext = 'H';
+    int a = 5, b = 8;
+    char ciphertext = affine_caesar_encrypt(a, b, plaintext);
+    printf("%c\n", ciphertext);
+    return 0;
+}
