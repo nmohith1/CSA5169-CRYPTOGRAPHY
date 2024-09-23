@@ -1,0 +1,11 @@
+#include <stdio.h>
+
+void rsa_attack(int n, int e, int common_factor) {
+    // RSA attack logic using common factor
+}
+
+int main() {
+    int n = 3599, e = 31, common_factor = 59;
+    rsa_attack(n, e, common_factor);
+    return 0;
+}
