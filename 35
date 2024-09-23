@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+void pad_message(char *message, int block_size) {
+    // Padding logic
+}
+
+void ecb_mode(char *plaintext, char *key) {
+    // ECB encryption logic
+}
+
+void cbc_mode(char *plaintext, char *key) {
+    // CBC encryption logic
+}
+
+void cfb_mode(char *plaintext, char *key) {
+    // CFB encryption logic
+}
+
+int main() {
+    char message[64] = "Test message";
+    char key[8];
+    pad_message(message, 8);
+    ecb_mode(message, key);
+    cbc_mode(message, key);
+    cfb_mode(message, key);
+    return 0;
+}
