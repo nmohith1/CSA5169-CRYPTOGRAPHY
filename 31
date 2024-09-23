@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+void generate_subkeys(int block_size) {
+    int subkey1[block_size], subkey2[block_size];
+    int constant = (block_size == 64) ? 0x1B : 0x87; 
+    // Perform left shift and XOR
+}
+
+int main() {
+    generate_subkeys(64);
+    generate_subkeys(128);
+    return 0;
+}
