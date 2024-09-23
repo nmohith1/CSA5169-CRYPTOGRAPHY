@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+void letter_frequency_additive_attack(char *ciphertext, int top_n) {
+    // Frequency analysis for additive cipher
+}
+
+int main() {
+    char ciphertext[] = "YRVG JHMNV VMG";
+    int top_n = 10;
+    letter_frequency_additive_attack(ciphertext, top_n);
+    return 0;
+}
