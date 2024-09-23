@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+void hill_cipher_attack(char *plaintext, char *ciphertext) {
+    // Hill cipher attack logic
+}
+
+int main() {
+    char plaintext[] = "HELLO";
+    char ciphertext[] = "ENCRYPTED";
+    hill_cipher_attack(plaintext, ciphertext);
+    return 0;
+}
