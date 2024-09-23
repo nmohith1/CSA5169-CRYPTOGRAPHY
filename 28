@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+int diffie_hellman(int a, int x, int q) {
+    return 1; // Calculation logic
+}
+
+int main() {
+    int a = 5, x = 7, q = 23;
+    int result = diffie_hellman(a, x, q);
+    printf("Key: %d\n", result);
+    return 0;
+}
