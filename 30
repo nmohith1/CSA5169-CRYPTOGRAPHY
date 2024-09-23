@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+void cbc_mac(char *message, char *key) {
+    // CBC MAC calculation logic
+}
+
+int main() {
+    char message[] = "TestMessage";
+    char key[] = "SecretKey";
+    cbc_mac(message, key);
+    return 0;
+}
