@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+void s_des_encrypt(char *plaintext, char *key) {
+    // S-DES encryption logic
+}
+
+void s_des_decrypt(char *ciphertext, char *key) {
+    // S-DES decryption logic
+}
+
+int main() {
+    char plaintext[] = "0000000100100011";
+    char key[] = "0111111101";
+    char iv[] = "10101010";
+    s_des_encrypt(plaintext, key);
+    s_des_decrypt(plaintext, key);
+    return 0;
+}
