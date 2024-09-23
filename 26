@@ -1,0 +1,11 @@
+#include <stdio.h>
+
+void generate_new_rsa_keys(int n) {
+    // Generate new RSA keys logic
+}
+
+int main() {
+    int n = 3599;
+    generate_new_rsa_keys(n);
+    return 0;
+}
