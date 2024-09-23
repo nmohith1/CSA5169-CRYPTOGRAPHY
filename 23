@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+void s_des_counter_mode(char *plaintext, char *key, char *counter) {
+    // S-DES encryption with counter mode logic
+}
+
+int main() {
+    char plaintext[] = "000000010000001000000100";
+    char key[] = "0111111101";
+    char counter[] = "00000000";
+    s_des_counter_mode(plaintext, key, counter);
+    return 0;
+}
