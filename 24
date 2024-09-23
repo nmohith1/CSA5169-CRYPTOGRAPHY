@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int extended_euclidean(int e, int phi_n) {
+    // Calculate multiplicative inverse of e mod phi(n)
+    return 0;
+}
+
+int main() {
+    int e = 31, n = 3599, p = 59, q = 61;
+    int phi_n = (p - 1) * (q - 1);
+    int d = extended_euclidean(e, phi_n);
+    printf("Private key: %d\n", d);
+    return 0;
+}
